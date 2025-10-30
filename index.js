@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 
 app.use(cors());
@@ -25,15 +25,25 @@ app.use('/subscribers', subscriberRoutes);
 
 
 // MongoDB connection
-mongoose.connect(process.env.DB_URI, {
-    serverSelectionTimeoutMS: 5000,
-    socketTimeoutMS: 45000,
-}).then(() => {
-    console.log('###Connected to MongoDB');
-    console.log('###Database:', mongoose.connection.name);
-}).catch(err => {
-    console.error('!!!Failed to connect to MongoDB');
-});
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.DB_URI, {
+            serverSelectionTimeoutMS: 10000,
+            socketTimeoutMS: 45000,
+        });
+        console.log('###Connected to MongoDB');
+        console.log('###Database:', conn.connection.name);
+    } catch (err) {
+        console.error('!!!Failed to connect to MongoDB');
+        console.error('!!!Error:', err.message);
+        // Don't exit the process in production, let it retry
+        if (process.env.NODE_ENV !== 'production') {
+            process.exit(1);
+        }
+    }
+};
+
+connectDB();
 
 app.listen(port, () => {
     console.log(`###Server is running at http://localhost:${port}`);
