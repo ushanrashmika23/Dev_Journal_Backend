@@ -20,6 +20,8 @@ const projectRoutes = require('./routes/Project.route');
 app.use('/projects', projectRoutes);
 const subscriberRoutes = require('./routes/Subscriber.route');
 app.use('/subscribers', subscriberRoutes);
+const utilsRoutes = require('./routes/Utils.route');
+app.use('/utils', utilsRoutes);
 
 // console.log(process.env.DB_URI);
 
