@@ -1,5 +1,5 @@
-const SubscriberController = require('../controller/Subscriber.controller');
-const express = require('express');
+import * as SubscriberController from '../controller/Subscriber.controller.js';
+import express from 'express';
 
 const router = express.Router();
 
@@ -8,4 +8,4 @@ router.post('/new', SubscriberController.create);
 // Retrieve all Subscribers
 router.get('/list', SubscriberController.findAll);
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const UtilsController = require('../controller/Utils.controller');
-const express = require('express');
+import { getPostAndProjectsCount } from '../controller/Utils.controller.js';
+import express from 'express';
 const router = express.Router();
 
 // Retrieve counts of Posts and Projects
-router.get('/counts', UtilsController.getPostAndProjectsCount);
+router.get('/counts', getPostAndProjectsCount);
 
-module.exports = router;
+export default router;

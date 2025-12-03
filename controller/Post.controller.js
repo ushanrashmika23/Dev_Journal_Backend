@@ -1,6 +1,6 @@
-const post = require('../model/Post.model');
+import post from '../model/Post.model.js';
 // Create and Save a new Post
-exports.create = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const newPost = new post(req.body);
         await newPost.save();
@@ -12,7 +12,7 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve and return all posts from the database.
-exports.findAllMeta = async (req, res) => {
+export const findAllMeta = async (req, res) => {
     try {
         const posts = await post.find({}, {
             _id: 1,
@@ -30,7 +30,7 @@ exports.findAllMeta = async (req, res) => {
     }
 };
 
-exports.findOneById = async (req, res) => {
+export const findOneById = async (req, res) => {
     try {
         const postId = req.params.id;
         const postData = await post.findById(postId);
@@ -43,7 +43,7 @@ exports.findOneById = async (req, res) => {
     }
 }
 
-exports.updateReadTime = async (req, res) => {
+export const updateReadTime = async (req, res) => {
     try {
         const postId = req.params.id;
         const { readTime } = req.body;

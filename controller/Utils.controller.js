@@ -1,7 +1,7 @@
-const Post = require('../model/Post.model');
-const Project = require('../model/Project.model');
+import Post from '../model/Post.model.js';
+import Project from '../model/Project.model.js';
 
-const getPostAndProjectsCount = async (req, res) => {
+export const getPostAndProjectsCount = async (req, res) => {
     try {
         const postCount = await Post.countDocuments();
         const projectCount = await Project.countDocuments();
@@ -9,8 +9,4 @@ const getPostAndProjectsCount = async (req, res) => {
     } catch (error) {
         res.status(500).json({ code: 500, status: 'error', data: error.message });
     }
-}
-
-module.exports = {
-    getPostAndProjectsCount
 }

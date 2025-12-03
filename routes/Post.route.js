@@ -1,5 +1,5 @@
-const PostController = require('./../controller/Post.controller');
-const express = require('express');
+import * as PostController from './../controller/Post.controller.js';
+import express from 'express';
 const router = express.Router();
 
 // Create a new Post
@@ -11,4 +11,4 @@ router.get('/:id', PostController.findOneById);
 // Update readTime of a Post with id
 router.patch('/updateReadTime/:id', PostController.updateReadTime);
 
-module.exports = router;
+export default router;

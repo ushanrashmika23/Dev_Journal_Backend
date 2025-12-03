@@ -1,7 +1,7 @@
-const Project = require('../model/Project.model');
+import Project from '../model/Project.model.js';
 
 // Create and Save a new Project
-exports.create = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const project = new Project({
             title: req.body.title,
@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve and return all projects from the database.
-exports.findAll = async (req, res) => {
+export const findAll = async (req, res) => {
     try {
         const projects = await Project.find();
         res.status(200).json({ code: 200, status: 'success', data: projects });
@@ -37,7 +37,7 @@ exports.findAll = async (req, res) => {
 };
 
 // Retrieve and return all projects meta from the database.
-exports.findAllMeta = async (req, res) => {
+export const findAllMeta = async (req, res) => {
     try {
         const projects = await Project.find({}, {
             _id: 1,
@@ -58,7 +58,7 @@ exports.findAllMeta = async (req, res) => {
 };
 
 // Find a single project with an id
-exports.findOneById = async (req, res) => {
+export const findOneById = async (req, res) => {
     try {
         const projectId = req.params.id;
         const project = await Project.findById(projectId);

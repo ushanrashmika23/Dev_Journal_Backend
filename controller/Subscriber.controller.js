@@ -1,6 +1,6 @@
-const Subscriber = require('../model/Subscriber.model');
+import Subscriber from '../model/Subscriber.model.js';
 // Create and Save a new Subscriber
-exports.create = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const subscriber = new Subscriber({
             email: req.body.email,
@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve and return all subscribers from the database.
-exports.findAll = async (req, res) => {
+export const findAll = async (req, res) => {
     try {
         const subscribers = await Subscriber.find();
         res.status(200).json({ code: 200, status: 'success', data: subscribers });

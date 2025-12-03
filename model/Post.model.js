@@ -1,6 +1,6 @@
-    const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-    const postSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
         // Mongoose automatically adds the '_id' field of type ObjectId
         title: {
             type: String,
@@ -45,5 +45,5 @@
         timestamps: true // Adds 'createdAt' and 'updatedAt' Date fields automatically
     });
 
-    const Post = mongoose.model('Post', postSchema);
-    module.exports = Post;
+const Post = mongoose.model('Post', postSchema);
+export default Post;

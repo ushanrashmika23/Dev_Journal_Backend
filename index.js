@@ -1,7 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import postRoutes from './routes/Post.route.js';
+import projectRoutes from './routes/Project.route.js';
+import subscriberRoutes from './routes/Subscriber.route.js';
+import utilsRoutes from './routes/Utils.route.js';
+import emailRoutes from './routes/Email.route.js';
+import visitorRoutes from './routes/Visitor.route.js';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,14 +22,12 @@ app.get('/', (req, res) => {
     res.send('Journal Started...');
 });
 
-const postRoutes = require('./routes/Post.route');
 app.use('/posts', postRoutes);
-const projectRoutes = require('./routes/Project.route');
 app.use('/projects', projectRoutes);
-const subscriberRoutes = require('./routes/Subscriber.route');
 app.use('/subscribers', subscriberRoutes);
-const utilsRoutes = require('./routes/Utils.route');
 app.use('/utils', utilsRoutes);
+app.use('/email', emailRoutes);
+app.use('/visitors', visitorRoutes);
 
 // console.log(process.env.DB_URI);
 
