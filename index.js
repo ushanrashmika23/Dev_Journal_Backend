@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Journal Started...');
+    res.send('DevJournal is running...');
 });
 
 app.use('/posts', postRoutes);
